@@ -60,7 +60,7 @@ for el in data_for_soup['data']:
             'data-qa': 'vacancy-serp__vacancy-title'
         })
         result['name'].append(vacancy_title.text)
-        result['vacancy_link'].append(url + vacancy_title['href'])
+        result['vacancy_link'].append(vacancy_title['href'])
         vacancy_employer_title = e.find('a', attrs={
             'data-qa': 'vacancy-serp__vacancy-employer'
         })
