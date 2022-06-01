@@ -1,3 +1,6 @@
+"""
+Написать функцию, которая производит поиск и выводит на экран вакансии с заработной платой больше введённой суммы (необходимо анализировать оба поля зарплаты).
+"""
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError as dke
 from bs4 import BeautifulSoup as bs
