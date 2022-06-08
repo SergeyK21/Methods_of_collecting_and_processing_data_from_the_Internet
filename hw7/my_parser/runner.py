@@ -11,10 +11,13 @@ if __name__ == '__main__':
     runner = CrawlerRunner(settings)
     runner.crawl(
         MySpiderSpider,
+        allowed_domains=['avito.ru'],
         start_urls=[
-            'https://hh.ru/search/vacancy?area=1&search_field=name&search_field=company_name&search_field=description&text=python&from=suggest_post',
-            'https://hh.ru/search/vacancy?area=2&search_field=name&search_field=company_name&search_field=description&text=python&from=suggest_post'
-        ],
-        allowed_domains=['hh.ru']
-    )
+            'https://www.avito.ru/moskva?q=iphone'
+        ]
 
+    )
+    # d = runner.join()
+    # d.addBoth(lambda _: reactor.stop())
+
+    reactor.run()
