@@ -17,7 +17,7 @@ if __name__ == '__main__':
         ]
 
     )
-    # d = runner.join()
-    # d.addBoth(lambda _: reactor.stop())
+    d = runner.join()
+    d.addBoth(lambda _: reactor.stop())
 
     reactor.run()
