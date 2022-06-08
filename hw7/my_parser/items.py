@@ -18,9 +18,9 @@ def clear_price(value: str):
 
 
 class MyParserItem(scrapy.Item):
-    # define the fields for your item here like:
+
     _id = scrapy.Field()
     name = scrapy.Field(output_processor=TakeFirst())
-    price = scrapy.Field(input_processor=MapCompose(clear_price), output_processor=TakeFirst())
+    price = scrapy.Field(input_processor=MapCompose(clear_price))
     url = scrapy.Field(output_processor=TakeFirst())
     photos = scrapy.Field()

@@ -25,5 +25,6 @@ class MyPhotopipeline(ImagesPipeline):
                     print(e)
 
     def item_completed(self, results, item, info):
-        item = [i[1] for i in results if i[0]]
+        item['photos'] = [i[1] for i in results if i[0]]
+
         return item
