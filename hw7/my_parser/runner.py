@@ -13,7 +13,7 @@ if __name__ == '__main__':
         MySpiderSpider,
         allowed_domains=['avito.ru'],
         start_urls=[
-            'https://www.avito.ru/moskva?q=iphone'
+            'https://www.avito.ru/moskva?localPriority=0&q=iphone'
         ]
 
     )
