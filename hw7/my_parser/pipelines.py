@@ -8,11 +8,33 @@
 from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
 import scrapy
+from pymongo import MongoClient
+import hashlib
+from pymongo.errors import DuplicateKeyError as dke
 
 
 class MyParserPipeline:
+    def __init__(self):
+        client = MongoClient('localhost', 27017)
+        self.mongobase = client['DB_hw7']
+
     def process_item(self, item, spider):
+        item['_id'] = hashlib.sha256(bytes(item['url'], encoding='utf8')).hexdigest()
+        col = self.mongobase[spider.name]
+        item['price_sale'], item['price_true'], item['currency'] = self.process_salary(item['price'])
+        try:
+            col.insert_one(item)
+        except dke:
+            print(f'Такой контент уже есть! _id = {item["_id"]}')
+
         return item
+
+    def process_salary(self, price):
+        s_min = price[1]
+        s_max = price[5]
+        cur = price[2]
+
+        return s_min, s_max, cur
 
 
 class MyPhotopipeline(ImagesPipeline):

@@ -1,13 +1,15 @@
-import requests
-import urllib3
+from pymongo import MongoClient
+import pprint
 
-# import wget
-#
-# url = ''
-# wget.dounload(url)
-headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36'}
-http = urllib3.PoolManager(headers=headers)
-url = 'https://www.avito.ru/'
-resp = http.request('GET', url)
-print(resp.status)
+client = MongoClient('localhost', 27017)
+print(client.list_database_names())
+# client.drop_database('DB_hw7')
+print(client.list_database_names())
+db = client['DB_hw7']
+print(db.list_collection_names())
+col = db['castoramaru']
+control_list = []
+for doc in col.find({}):
+    print(doc['price_sale'])
+    print(doc['price_true'])
+    print(doc['currency'])
