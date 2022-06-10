@@ -34,7 +34,7 @@ class LabirintruSpider(scrapy.Spider):
         name = response.xpath('//div[@id="product-title"]/h1/text()').get()
         author = response.xpath('//div[@class="authors"]/a/text()').getall()
 
-        salary = response.xpath('//div[contains(@class,"buying-price")]//text()').getall()
+        price = response.xpath('//div[contains(@class,"buying-price")]//text()').getall()
         rating = response.xpath('//div[@id="rate"]/text()').getall()
         url = response.url
-        yield JobparserItem(name=name, salary=salary, url=url, author=author, rating=rating)
+        yield JobparserItem(name=name, price=price, url=url, author=author, rating=rating)
