@@ -17,8 +17,7 @@ class CastoramaruSpider(scrapy.Spider):
                                isinstance(el, str)]
 
     def parse(self, response: HtmlResponse):
-        next_page = response.xpath(
-            '//div[contains(@class, "toolbar-bottom")]//a[@class="next_jump"]').get()
+        next_page = response.xpath('//div[contains(@class, "toolbar-bottom")]//a[contains(@class, "next")]/@href').get()
         if next_page:
             yield response.follow(next_page, callback=self.parse)
 

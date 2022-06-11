@@ -30,9 +30,14 @@ class MyParserPipeline:
         return item
 
     def process_salary(self, price):
-        s_min = price[1]
-        s_max = price[5]
-        cur = price[2]
+        if len(price) <= 4:
+            s_min = price[1]
+            s_max = price[1]
+            cur = price[2]
+        else:
+            s_min = price[1]
+            s_max = price[5]
+            cur = price[2]
 
         return s_min, s_max, cur
 

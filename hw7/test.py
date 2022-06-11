@@ -10,6 +10,4 @@ print(db.list_collection_names())
 col = db['castoramaru']
 control_list = []
 for doc in col.find({}):
-    print(doc['price_sale'])
-    print(doc['price_true'])
-    print(doc['currency'])
+    print(len(doc['price']),doc['price'])
