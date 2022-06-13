@@ -17,7 +17,8 @@ class JobparserItem(scrapy.Item):
     _id = scrapy.Field()
     author = scrapy.Field()
     price = scrapy.Field()
-    sale = scrapy.Field()
+    price_real = scrapy.Field()
+    price_sale = scrapy.Field()
     rating = scrapy.Field()
 
 

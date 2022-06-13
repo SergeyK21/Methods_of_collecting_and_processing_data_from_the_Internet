@@ -32,8 +32,11 @@ class JobparserPipeline:
             except dke:
                 print(f'Такой контент уже есть! _id = {item["_id"]}')
         else:
+            if spider.name == 'labirintru':
+                item['price_real'], item['price_sale'], item['currency'] = self.process_price_lab(item['price'])
+            else:
+                pass
             col = self.mongobase_books[spider.name]
-
             try:
                 col.insert_one(item)
             except dke:
@@ -85,3 +88,17 @@ class JobparserPipeline:
                 cur = salary[2]
 
         return s_min, s_max, cur
+
+    def process_price_lab(self,price):
+        price_real = None
+        price_sale = None
+        currency = None
+        if len(price) == 14:
+            price_real = int("".join([i for i in price[3] if i.isdigit()]))
+            price_sale = int("".join([i for i in price[9] if i.isdigit()]))
+            currency = price[11]
+        elif len(price) == 7:
+            price_real = int("".join([i for i in price[3] if i.isdigit()]))
+            currency = price[5]
+        return price_real, price_sale, currency
+
