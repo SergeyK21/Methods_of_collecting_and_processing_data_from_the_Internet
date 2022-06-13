@@ -34,7 +34,7 @@ class InstagramSpider(scrapy.Spider):
                 cb_kwargs={'username': self.user_for_parse}
             )
 
-    def user_data(self, response: HtmlResponse, username):
+    def user_data(self, response: HtmlResponse, **kwargs):
         pass
 
     def fetch_csrf_token(self, text):
